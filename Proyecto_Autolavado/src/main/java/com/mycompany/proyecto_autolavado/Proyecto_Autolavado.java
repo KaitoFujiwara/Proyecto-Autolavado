@@ -12,5 +12,6 @@ public class Proyecto_Autolavado {
 
     public static void main(String[] args) {
         System.out.println("Hello World! hola mujer");
+        System.out.println("segundo inteto");
     }
 }
