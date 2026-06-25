@@ -9,8 +9,9 @@ package com.mycompany.proyecto_autolavado;
  * @author Kaito
  */
 public class Proyecto_Autolavado {
-
     public static void main(String[] args) {
         System.out.println("Hello World!");
+            System.out.print("hola");
+
     }
 }
