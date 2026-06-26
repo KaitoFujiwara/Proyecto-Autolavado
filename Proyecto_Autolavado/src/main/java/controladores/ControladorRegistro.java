@@ -21,28 +21,29 @@ public class ControladorRegistro {
         return String.format("AUT-%04d", contadorAutos + 1);
     }
 
-    public boolean registrarClienteAuto(String nombre, String telefono,
-            String color, String marca, String modelo) {
+    public boolean registrarClienteAuto(String nombre, String apellidoPaterno,
+        String apellidoMaterno, String telefono,
+        String color, String marca, String modelo) {
 
-        if (contadorClientes < clientes.length && contadorAutos < autos.length) {
+    if (contadorClientes < clientes.length && contadorAutos < autos.length) {
 
-            Cliente cliente = new Cliente(nombre, telefono);
+        Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, telefono);
 
-            String idAuto = generarIdAuto();
+        String idAuto = generarIdAuto();
 
-            Auto auto = new Auto(idAuto, color, marca, modelo, cliente);
+        Auto auto = new Auto(idAuto, color, marca, modelo, cliente);
 
-            clientes[contadorClientes] = cliente;
-            autos[contadorAutos] = auto;
+        clientes[contadorClientes] = cliente;
+        autos[contadorAutos] = auto;
 
-            contadorClientes++;
-            contadorAutos++;
+        contadorClientes++;
+        contadorAutos++;
 
-            return true;
-        }
-
-        return false;
+        return true;
     }
+
+    return false;
+}
 
     public Cliente obtenerCliente(int posicion) {
         if (posicion >= 0 && posicion < contadorClientes) {

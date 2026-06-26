@@ -1,12 +1,17 @@
 package modelos;
 
+
 public class Cliente {
 
     private String nombre;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
     private String telefono;
 
-    public Cliente(String nombre, String telefono) {
+    public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String telefono) {
         this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
         this.telefono = telefono;
     }
 
@@ -14,20 +19,24 @@ public class Cliente {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
     }
 
     public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public String getNombreCompleto() {
+        return nombre + " " + apellidoPaterno + " " + apellidoMaterno;
     }
 
     @Override
     public String toString() {
-        return nombre + " - " + telefono;
+        return getNombreCompleto() + " - " + telefono;
     }
 }

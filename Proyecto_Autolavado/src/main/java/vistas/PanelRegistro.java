@@ -29,6 +29,8 @@ public class PanelRegistro extends javax.swing.JPanel {
 
 private void limpiarCampos() {
     txtNombre.setText("");
+    txtApPaterno.setText("");
+    txtApMaterno.setText("");
     txtTelefono.setText("");
     txtColor.setText("");
     txtMarca.setText("");
@@ -53,7 +55,7 @@ private void mostrarRegistros() {
     for (int i = 0; i < controlador.getContadorAutos(); i++) {
         Auto auto = controlador.obtenerAuto(i);
 
-        Object[] fila = {auto.getIdAuto(),auto.getCliente().getNombre(),auto.getCliente().getTelefono(),auto.getColor(),auto.getMarca(),auto.getModelo()
+        Object[] fila = {auto.getIdAuto(),auto.getCliente().getNombreCompleto(),auto.getCliente().getTelefono(),auto.getColor(),auto.getMarca(),auto.getModelo()
         };
 
         modeloTabla.addRow(fila);
@@ -74,49 +76,63 @@ private boolean letrasNumerosYEspacios(String texto) {
 
     private void guardarRegistro() {
     String nombre = txtNombre.getText();
+    String apellidoPaterno = txtApPaterno.getText();
+    String apellidoMaterno = txtApMaterno.getText();
     String telefono = txtTelefono.getText();
     String color = txtColor.getText();
     String marca = txtMarca.getText();
     String modelo = txtModelo.getText();
 
-    if (nombre.equals("") || telefono.equals("") || color.equals("")
-            || marca.equals("") || modelo.equals("")) {
+    if (nombre.equals("") || apellidoPaterno.equals("") || apellidoMaterno.equals("")
+        || telefono.equals("") || color.equals("")
+        || marca.equals("") || modelo.equals("")) {
 
-        JOptionPane.showMessageDialog(this, "No puedes dejar campos vacíos");
-        return;
-    }
+    JOptionPane.showMessageDialog(this, "No puedes dejar campos vacíos");
+    return;
+}
 
-    if (!soloLetrasYEspacios(nombre)) {
-        JOptionPane.showMessageDialog(this, "El nombre solo debe contener letras, sin números ni signos");
-        return;
-    }
+if (!soloLetrasYEspacios(nombre)) {
+    JOptionPane.showMessageDialog(this, "El nombre solo debe contener letras, sin números ni signos");
+    return;
+}
 
-    if (!soloNumeros(telefono)) {
-        JOptionPane.showMessageDialog(this, "El teléfono debe contener solo números");
-        return;
-    }
+if (!soloLetrasYEspacios(apellidoPaterno)) {
+    JOptionPane.showMessageDialog(this, "El apellido paterno solo debe contener letras, sin números ni signos");
+    return;
+}
 
-    if (telefono.length() != 10) {
-        JOptionPane.showMessageDialog(this, "El teléfono debe tener exactamente 10 dígitos");
-        return;
-    }
+if (!soloLetrasYEspacios(apellidoMaterno)) {
+    JOptionPane.showMessageDialog(this, "El apellido materno solo debe contener letras, sin números ni signos");
+    return;
+}
 
-    if (!soloLetrasYEspacios(color)) {
-        JOptionPane.showMessageDialog(this, "El color solo debe contener letras, sin números ni signos");
-        return;
-    }
+if (!soloNumeros(telefono)) {
+    JOptionPane.showMessageDialog(this, "El teléfono debe contener solo números");
+    return;
+}
 
-    if (!soloLetrasYEspacios(marca)) {
-        JOptionPane.showMessageDialog(this, "La marca solo debe contener letras, sin números ni signos");
-        return;
-    }
+if (telefono.length() != 10) {
+    JOptionPane.showMessageDialog(this, "El teléfono debe tener exactamente 10 dígitos");
+    return;
+}
 
-    if (!letrasNumerosYEspacios(modelo)) {
-        JOptionPane.showMessageDialog(this, "El modelo no debe contener signos");
-        return;
-    }
+if (!soloLetrasYEspacios(color)) {
+    JOptionPane.showMessageDialog(this, "El color solo debe contener letras, sin números ni signos");
+    return;
+}
 
-    boolean guardado = controlador.registrarClienteAuto(nombre,telefono,color,marca,modelo);
+if (!soloLetrasYEspacios(marca)) {
+    JOptionPane.showMessageDialog(this, "La marca solo debe contener letras, sin números ni signos");
+    return;
+}
+
+if (!letrasNumerosYEspacios(modelo)) {
+    JOptionPane.showMessageDialog(this, "El modelo no debe contener signos");
+    return;
+}
+
+    boolean guardado = controlador.registrarClienteAuto(nombre,apellidoPaterno,apellidoMaterno,telefono,color,marca,modelo
+);
 
     if (guardado) {
         JOptionPane.showMessageDialog(this, "Registro guardado correctamente");
@@ -149,6 +165,10 @@ private boolean letrasNumerosYEspacios(String texto) {
         btnGuardarRegistro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaRegistro = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        txtApPaterno = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtApMaterno = new javax.swing.JTextField();
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.NE_RESIZE_CURSOR));
 
@@ -191,55 +211,80 @@ private boolean letrasNumerosYEspacios(String texto) {
         ));
         jScrollPane1.setViewportView(tablaRegistro);
 
+        jLabel10.setText("Apellido Paterno");
+
+        txtApPaterno.addActionListener(this::txtApPaternoActionPerformed);
+
+        jLabel11.setText("Apellido Materno");
+
+        txtApMaterno.addActionListener(this::txtApMaternoActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel6))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtIdAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(txtIdAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel7))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(0, 0, Short.MAX_VALUE)
-                                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel9)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtColor)
-                                        .addComponent(txtModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)))))))
-                .addContainerGap(19, Short.MAX_VALUE))
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel11))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtApPaterno)
+                                            .addComponent(txtApMaterno)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(22, 22, 22)
+                                                .addComponent(jLabel1))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(47, 47, 47)
+                                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(6, 6, 6)))))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(148, 148, 148))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnGuardarRegistro)
-                        .addGap(127, 127, 127))
+                        .addGap(132, 132, 132))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125))))
+                        .addComponent(jLabel5)
+                        .addGap(146, 146, 146))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,29 +297,37 @@ private boolean letrasNumerosYEspacios(String texto) {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtApPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtApMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtIdAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
                 .addComponent(btnGuardarRegistro)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -287,10 +340,20 @@ private boolean letrasNumerosYEspacios(String texto) {
         guardarRegistro();
     }//GEN-LAST:event_btnGuardarRegistroActionPerformed
 
+    private void txtApPaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApPaternoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApPaternoActionPerformed
+
+    private void txtApMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApMaternoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApMaternoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarRegistro;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -301,6 +364,8 @@ private boolean letrasNumerosYEspacios(String texto) {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaRegistro;
+    private javax.swing.JTextField txtApMaterno;
+    private javax.swing.JTextField txtApPaterno;
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtIdAuto;
     private javax.swing.JTextField txtMarca;

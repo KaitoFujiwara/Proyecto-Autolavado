@@ -43,7 +43,7 @@ private void generarTicket(Servicio servicio) {
     ticket += "====================================\n";
     ticket += "ID Servicio: " + servicio.getIdServicio() + "\n";
     ticket += "------------------------------------\n";
-    ticket += "Cliente: " + servicio.getAuto().getCliente().getNombre() + "\n";
+    ticket += "Cliente: " + servicio.getAuto().getCliente().getNombreCompleto() + "\n";
     ticket += "Teléfono: " + servicio.getAuto().getCliente().getTelefono() + "\n";
     ticket += "------------------------------------\n";
     ticket += "Auto: " + servicio.getAuto().getMarca() + " " + servicio.getAuto().getModelo() + "\n";
