@@ -84,7 +84,7 @@ jButton10.addActionListener(e -> limpiarTicket());
         jTextField20 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jCalendarComboBox1 = new de.wannawork.jcalendar.JCalendarComboBox();
+        jCalendarComboBox1 = new org.netbeans.modules.form.InvalidComponent();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
@@ -176,6 +176,8 @@ jButton10.addActionListener(e -> limpiarTicket());
         jLabel9.setText("    Color:");
 
         jTextField5.addActionListener(this::jTextField5ActionPerformed);
+
+        jTextField7.addActionListener(this::jTextField7ActionPerformed);
 
         jButton4.setText("Guardar");
         jButton4.addActionListener(this::jButton4ActionPerformed);
@@ -365,16 +367,12 @@ jButton10.addActionListener(e -> limpiarTicket());
                     .addComponent(jLabel30))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel31)
-                        .addGap(24, 244, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton1)
-                                .addComponent(jButton3)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel31)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton3))
+                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Registro de Servicio ", jPanel3);
@@ -920,6 +918,10 @@ jButton10.addActionListener(e -> limpiarTicket());
         guardarReservacion();
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
     private void guardarReservacion() {
     try {
         int idCliente = Integer.parseInt(jTextField13.getText().trim());
@@ -1127,7 +1129,7 @@ private void limpiarTicket() {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private de.wannawork.jcalendar.JCalendarComboBox jCalendarComboBox1;
+    private org.netbeans.modules.form.InvalidComponent jCalendarComboBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
