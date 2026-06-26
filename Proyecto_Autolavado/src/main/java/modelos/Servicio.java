@@ -1,66 +1,59 @@
 package modelos;
 
+import modelos.Auto;
+
 public class Servicio {
 
-    private int id;
-    private String nombre;
-    private String descripcion;
+    private String idServicio;
+    private Auto auto;
+    private String tipoServicio;
     private double precio;
-    private int duracion;
+    private String fecha;
+    private String horaEntrada;
+    private String metodoPago;
 
-    public Servicio() {
-    }
+    public Servicio(String idServicio, Auto auto, String tipoServicio, double precio,
+            String fecha, String horaEntrada, String metodoPago) {
 
-    public Servicio(int id, String nombre, String descripcion, double precio, int duracion) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
+        this.idServicio = idServicio;
+        this.auto = auto;
+        this.tipoServicio = tipoServicio;
         this.precio = precio;
-        this.duracion = duracion;
+        this.fecha = fecha;
+        this.horaEntrada = horaEntrada;
+        this.metodoPago = metodoPago;
     }
 
-    public int getId() {
-        return id;
+    public String getIdServicio() {
+        return idServicio;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Auto getAuto() {
+        return auto;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public String getTipoServicio() {
+        return tipoServicio;
     }
 
     public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public String getFecha() {
+        return fecha;
     }
 
-    public int getDuracion() {
-        return duracion;
+    public String getHoraEntrada() {
+        return horaEntrada;
     }
 
-    public void setDuracion(int duracion) {
-        this.duracion = duracion;
+    public String getMetodoPago() {
+        return metodoPago;
     }
 
     @Override
     public String toString() {
-        return nombre;
+        return idServicio + " - " + tipoServicio;
     }
 }

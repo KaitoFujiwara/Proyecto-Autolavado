@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.mycompany</groupId>
     <artifactId>Proyecto_Autolavado</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <repositories>
-        <repository>
-            <id>unknown-jars-temp-repo</id>
-            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
-            <url>file:${project.basedir}/lib</url>
-        </repository>
-    </repositories>
+
     <dependencies>
         <dependency>
-        <groupId>de.wannawork</groupId>
-        <artifactId>jcalendar</artifactId>
-        <version>0.8.1-SNAPSHOT</version>
-        <scope>system</scope>
-        <systemPath>${project.basedir}/lib/unknown/binary/jcalendar-0.8.1/SNAPSHOT/jcalendar-0.8.1-SNAPSHOT.jar</systemPath>
-    </dependency>
-        <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>jcalendar-0.8.1</artifactId>
-            <version>SNAPSHOT</version>
+            <groupId>com.toedter</groupId>
+            <artifactId>jcalendar</artifactId>
+            <version>1.4</version>
         </dependency>
     </dependencies>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>21</maven.compiler.release>
         <exec.mainClass>com.mycompany.proyecto_autolavado.Proyecto_Autolavado</exec.mainClass>
     </properties>
+
 </project>

@@ -2,25 +2,26 @@ package modelos;
 
 public class Auto {
 
-    private int id;
+    private String idAuto;
     private String color;
+    private String marca;
     private String modelo;
+    private Cliente cliente;
 
-    public Auto() {
-    }
-
-    public Auto(int id, String color, String modelo) {
-        this.id = id;
+    public Auto(String idAuto, String color, String marca, String modelo, Cliente cliente) {
+        this.idAuto = idAuto;
         this.color = color;
+        this.marca = marca;
         this.modelo = modelo;
+        this.cliente = cliente;
     }
 
-    public int getId() {
-        return id;
+    public String getIdAuto() {
+        return idAuto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdAuto(String idAuto) {
+        this.idAuto = idAuto;
     }
 
     public String getColor() {
@@ -31,6 +32,14 @@ public class Auto {
         this.color = color;
     }
 
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
     public String getModelo() {
         return modelo;
     }
@@ -39,8 +48,16 @@ public class Auto {
         this.modelo = modelo;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     @Override
     public String toString() {
-        return modelo;
+        return idAuto + " - " + marca + " " + modelo + " (" + color + ")";
     }
 }
