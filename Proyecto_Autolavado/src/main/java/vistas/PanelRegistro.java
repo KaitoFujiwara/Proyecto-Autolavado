@@ -53,20 +53,26 @@ private void mostrarRegistros() {
     for (int i = 0; i < controlador.getContadorAutos(); i++) {
         Auto auto = controlador.obtenerAuto(i);
 
-        Object[] fila = {
-            auto.getIdAuto(),
-            auto.getCliente().getNombre(),
-            auto.getCliente().getTelefono(),
-            auto.getColor(),
-            auto.getMarca(),
-            auto.getModelo()
+        Object[] fila = {auto.getIdAuto(),auto.getCliente().getNombre(),auto.getCliente().getTelefono(),auto.getColor(),auto.getMarca(),auto.getModelo()
         };
 
         modeloTabla.addRow(fila);
     }
 }
 
-private void guardarRegistro() {
+private boolean soloLetrasYEspacios(String texto) {
+    return texto.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+");
+}
+
+private boolean soloNumeros(String texto) {
+    return texto.matches("[0-9]+");
+}
+
+private boolean letrasNumerosYEspacios(String texto) {
+    return texto.matches("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]+");
+}
+
+    private void guardarRegistro() {
     String nombre = txtNombre.getText();
     String telefono = txtTelefono.getText();
     String color = txtColor.getText();
@@ -80,43 +86,37 @@ private void guardarRegistro() {
         return;
     }
 
-    if (esNumero(nombre)) {
-        JOptionPane.showMessageDialog(this, "El nombre no puede ser un número");
+    if (!soloLetrasYEspacios(nombre)) {
+        JOptionPane.showMessageDialog(this, "El nombre solo debe contener letras, sin números ni signos");
         return;
     }
 
-    if (!esNumero(telefono)) {
+    if (!soloNumeros(telefono)) {
         JOptionPane.showMessageDialog(this, "El teléfono debe contener solo números");
         return;
     }
 
-    if (telefono.length() < 10) {
-        JOptionPane.showMessageDialog(this, "El teléfono debe tener al menos 10 dígitos");
+    if (telefono.length() != 10) {
+        JOptionPane.showMessageDialog(this, "El teléfono debe tener exactamente 10 dígitos");
         return;
     }
 
-    if (esNumero(color)) {
-        JOptionPane.showMessageDialog(this, "El color no puede ser un número");
+    if (!soloLetrasYEspacios(color)) {
+        JOptionPane.showMessageDialog(this, "El color solo debe contener letras, sin números ni signos");
         return;
     }
 
-    if (esNumero(marca)) {
-        JOptionPane.showMessageDialog(this, "La marca no puede ser un número");
+    if (!soloLetrasYEspacios(marca)) {
+        JOptionPane.showMessageDialog(this, "La marca solo debe contener letras, sin números ni signos");
         return;
     }
 
-    if (esNumero(modelo)) {
-        JOptionPane.showMessageDialog(this, "El modelo no puede ser solo número");
+    if (!letrasNumerosYEspacios(modelo)) {
+        JOptionPane.showMessageDialog(this, "El modelo no debe contener signos");
         return;
     }
 
-    boolean guardado = controlador.registrarClienteAuto(
-            nombre,
-            telefono,
-            color,
-            marca,
-            modelo
-    );
+    boolean guardado = controlador.registrarClienteAuto(nombre,telefono,color,marca,modelo);
 
     if (guardado) {
         JOptionPane.showMessageDialog(this, "Registro guardado correctamente");
@@ -274,7 +274,7 @@ private void guardarRegistro() {
                 .addComponent(btnGuardarRegistro)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
