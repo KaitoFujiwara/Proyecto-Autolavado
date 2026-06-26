@@ -1,5 +1,6 @@
 package vistas;
 import controladores.ControladorRegistro;
+import java.awt.GridBagLayout;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.Auto;
@@ -10,6 +11,7 @@ public class PanelRegistro extends javax.swing.JPanel {
     
  public PanelRegistro(ControladorRegistro controlador) {
     initComponents();
+    setLayout(new GridBagLayout());
 
     this.controlador = controlador;
 
@@ -169,8 +171,9 @@ if (!letrasNumerosYEspacios(modelo)) {
         txtApPaterno = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtApMaterno = new javax.swing.JTextField();
+        img = new javax.swing.JLabel();
 
-        setCursor(new java.awt.Cursor(java.awt.Cursor.NE_RESIZE_CURSOR));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         jLabel1.setText("LAVA-AUTOS  RUST-EZE");
@@ -218,6 +221,9 @@ if (!letrasNumerosYEspacios(modelo)) {
         jLabel11.setText("Apellido Materno");
 
         txtApMaterno.addActionListener(this::txtApMaternoActionPerformed);
+
+        img.setIcon(new javax.swing.ImageIcon("C:\\Users\\Kaito\\Documents\\NetBeansProjects\\Proyecto-Autolavado\\Proyecto_Autolavado\\src\\main\\java\\vistas\\img\\auto50.jpg")); // NOI18N
+        img.setMaximumSize(new java.awt.Dimension(80, 83));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -267,7 +273,9 @@ if (!letrasNumerosYEspacios(modelo)) {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(22, 22, 22)
-                                                .addComponent(jLabel1))
+                                                .addComponent(jLabel1)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(47, 47, 47)
                                                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -290,7 +298,9 @@ if (!letrasNumerosYEspacios(modelo)) {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(img, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addGap(15, 15, 15)
@@ -327,7 +337,7 @@ if (!letrasNumerosYEspacios(modelo)) {
                 .addComponent(btnGuardarRegistro)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -351,6 +361,7 @@ if (!letrasNumerosYEspacios(modelo)) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardarRegistro;
+    private javax.swing.JLabel img;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
