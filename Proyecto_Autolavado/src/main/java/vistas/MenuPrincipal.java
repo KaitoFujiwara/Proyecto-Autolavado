@@ -10,6 +10,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     public MenuPrincipal() {
     initComponents();
+    
+    setSize(500, 650);
+    setLocationRelativeTo(null);
+    setResizable(false);
     setLocationRelativeTo(null);
     setTitle("Lava Autos");
 
