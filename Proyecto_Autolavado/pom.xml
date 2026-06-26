@@ -14,6 +14,13 @@
     </repositories>
     <dependencies>
         <dependency>
+        <groupId>de.wannawork</groupId>
+        <artifactId>jcalendar</artifactId>
+        <version>0.8.1-SNAPSHOT</version>
+        <scope>system</scope>
+        <systemPath>${project.basedir}/lib/unknown/binary/jcalendar-0.8.1/SNAPSHOT/jcalendar-0.8.1-SNAPSHOT.jar</systemPath>
+    </dependency>
+        <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>jcalendar-0.8.1</artifactId>
             <version>SNAPSHOT</version>
