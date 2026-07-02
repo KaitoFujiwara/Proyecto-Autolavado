@@ -4,7 +4,7 @@ import controladores.ControladorServicios;
 import javax.swing.JOptionPane;
 import modelos.Servicio;
 
-class PanelTicket extends javax.swing.JPanel {
+public class PanelTicket extends javax.swing.JPanel {
 
     private ControladorServicios controladorServicios;
     
@@ -39,23 +39,32 @@ private void generarTicket(Servicio servicio) {
     String ticket = "";
 
     ticket += "====================================\n";
-    ticket += "          LAVA AUTOS\n";
+    ticket += "        LAVA AUTOS RUST-EZE\n";
     ticket += "====================================\n";
     ticket += "ID Servicio: " + servicio.getIdServicio() + "\n";
     ticket += "------------------------------------\n";
+
+    ticket += "DATOS DEL CLIENTE\n";
     ticket += "Cliente: " + servicio.getAuto().getCliente().getNombreCompleto() + "\n";
-    ticket += "Teléfono: " + servicio.getAuto().getCliente().getTelefono() + "\n";
+    ticket += "Telefono: " + servicio.getAuto().getCliente().getTelefono() + "\n";
     ticket += "------------------------------------\n";
+
+    ticket += "DATOS DEL AUTO\n";
+    ticket += "ID Auto: " + servicio.getAuto().getIdAuto() + "\n";
     ticket += "Auto: " + servicio.getAuto().getMarca() + " " + servicio.getAuto().getModelo() + "\n";
     ticket += "Color: " + servicio.getAuto().getColor() + "\n";
-    ticket += "ID Auto: " + servicio.getAuto().getIdAuto() + "\n";
     ticket += "------------------------------------\n";
+
+    ticket += "DATOS DEL SERVICIO\n";
     ticket += "Servicio: " + servicio.getTipoServicio() + "\n";
     ticket += "Precio: $" + servicio.getPrecio() + "\n";
     ticket += "Fecha: " + servicio.getFecha() + "\n";
     ticket += "Hora entrada: " + servicio.getHoraEntrada() + "\n";
-    ticket += "Método de pago: " + servicio.getMetodoPago() + "\n";
+    ticket += "Hora salida: " + servicio.getHoraSalida() + "\n";
+    ticket += "Duracion: " + servicio.getDuracion() + "\n";
+    ticket += "Metodo de pago: " + servicio.getMetodoPago() + "\n";
     ticket += "------------------------------------\n";
+
     ticket += "TOTAL: $" + servicio.getPrecio() + "\n";
     ticket += "====================================\n";
     ticket += "     Gracias por su preferencia\n";

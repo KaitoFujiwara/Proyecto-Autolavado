@@ -1,5 +1,8 @@
 package controladores;
 
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import modelos.Servicio;
 
 public class ControladorServicios {
@@ -39,6 +42,50 @@ public class ControladorServicios {
             }
         }
         return null;
+    }
+
+    public boolean registrarSalida(String idServicio) {
+        Servicio servicio = buscarServicioPorId(idServicio);
+
+        if (servicio == null) {
+            return false;
+        }
+
+        if (!servicio.getHoraSalida().equals("Pendiente")) {
+            return false;
+        }
+
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        LocalTime horaSalida = LocalTime.now();
+        String horaSalidaTexto = horaSalida.format(formato);
+
+        servicio.setHoraSalida(horaSalidaTexto);
+
+        String duracion = calcularDuracion(servicio.getHoraEntrada(), horaSalidaTexto);
+        servicio.setDuracion(duracion);
+
+        return true;
+    }
+
+    private String calcularDuracion(String horaEntradaTexto, String horaSalidaTexto) {
+        try {
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+            LocalTime horaEntrada = LocalTime.parse(horaEntradaTexto, formato);
+            LocalTime horaSalida = LocalTime.parse(horaSalidaTexto, formato);
+
+            Duration duracion = Duration.between(horaEntrada, horaSalida);
+
+            long horas = duracion.toHours();
+            long minutos = duracion.toMinutes() % 60;
+            long segundos = duracion.getSeconds() % 60;
+
+            return horas + " h " + minutos + " min " + segundos + " seg";
+
+        } catch (Exception e) {
+            return "No calculada";
+        }
     }
 
     public Servicio[] getServicios() {
