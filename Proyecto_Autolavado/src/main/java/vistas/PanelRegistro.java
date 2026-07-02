@@ -11,7 +11,7 @@ public class PanelRegistro extends javax.swing.JPanel {
     
  public PanelRegistro(ControladorRegistro controlador) {
     initComponents();
-    setLayout(new GridBagLayout());
+    
 
     this.controlador = controlador;
 
@@ -280,7 +280,7 @@ if (!letrasNumerosYEspacios(modelo)) {
                                                 .addGap(47, 47, 47)
                                                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(6, 6, 6)))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
