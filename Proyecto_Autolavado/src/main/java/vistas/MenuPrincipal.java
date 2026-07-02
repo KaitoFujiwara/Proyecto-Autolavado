@@ -7,7 +7,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private ControladorRegistro controladorRegistro;
     private ControladorServicios controladorServicios;
-
+    
     public MenuPrincipal() {
     initComponents();
     
@@ -24,13 +24,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     PanelRegistro panelRegistro = new PanelRegistro(controladorRegistro);
     PanelServicios panelServicios = new PanelServicios(controladorRegistro, controladorServicios);
+    PanelTiempo panelTiempo = new PanelTiempo(controladorServicios);
     PanelTicket panelTicket = new PanelTicket(controladorServicios);
 
     jTabbedPane1.addTab("Registro", panelRegistro);
     jTabbedPane1.addTab("Servicio", panelServicios);
+    jTabbedPane1.addTab("Control de Tiempo", panelTiempo);
     jTabbedPane1.addTab("Ticket", panelTicket);
 }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -64,3 +65,4 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
+
